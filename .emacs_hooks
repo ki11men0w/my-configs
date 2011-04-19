@@ -1,0 +1,10 @@
+;; -*- mode:lisp; -*-
+
+(defun set-tab-width-3()
+  (setq tab-width 3)
+  )
+
+(defun set-tab-width-4()
+  (setq tab-width 4)
+  )
+
