@@ -26,6 +26,30 @@
 ;(autoload 'plsql-mode "plsql" "PL/SQL editing mode 2." t)
 ;(autoload 'sql-mode "sql" "PL/SQL editing mode." t)
 ;(autoload 'pls-mode "pls-mode" "PL/SQL editing mode." t)
+(require 'uniquify)
+
+;; Erlang mode
+(setq load-path (cons "c:/bin/erl5.7.4/lib/tools-2.6.5/emacs" load-path))
+(setq erlang-root-dir "c:/bin/erl5.7.4")
+(setq exec-path (cons "c:/bin/erl5.7.4/bin" exec-path))
+(require 'erlang-start)
+
+
+(setq load-path (cons "c:/emacs/site-lisp/git/egg" load-path))
+(require 'egg)
+(load-library "egg-grep")
+;;(setq load-path (cons "c:/emacs/site-lisp/git" load-path))
+;;(require 'git)
+(require 'git-blame)
+(setq load-path (cons "c:/emacs/site-lisp/git/gitsum" load-path))
+;(require 'gitsum)
+
+;(setq load-path (cons "c:/emacs/site-lisp/git/magit" load-path))
+;(require 'magit)
+;(setq load-path (cons "c:/emacs/site-lisp/git/egit" load-path))
+;(require 'egit)
+
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -35,6 +59,9 @@
  '(Buffer-menu-buffer+size-width 54)
  '(Buffer-menu-mode-width 12)
  '(auto-compression-mode t nil (jka-compr))
+ '(bookmark-bmenu-file-column 50)
+ '(bookmark-save-flag 1)
+ '(bookmark-use-annotations t)
  '(c-mode-hook (quote (set-tab-width-4)))
  '(calendar-week-start-day 1)
  '(change-log-mode-hook (quote (turn-on-auto-fill)))
@@ -57,10 +84,12 @@
  '(dired-dwim-target t)
  '(dired-garbage-files-regexp "\\.\\(?:log\\|orig\\|rej\\|toc\\|~...\\|dcu\\|keep\\(\\..+\\)\\)\\'")
  '(dired-recursive-copies (quote always))
- '(dired-recursive-deletes (quote top))
+ '(dired-recursive-deletes (quote always))
  '(ediff-cmp-program "diff")
  '(ediff-keep-variants nil)
- '(fill-column 80)
+ '(egg-patch-command "c:\\bin\\git\\bin\\patch.exe")
+ '(egg-quit-window-actions (quote ((egg-status-buffer-mode kill restore-windows) (egg-commit-buffer-mode kill restore-windows))))
+ '(fill-column 100)
  '(frame-background-mode (quote dark))
  '(global-semantic-highlight-edits-mode t nil (semantic/util-modes))
  '(global-semantic-highlight-func-mode t nil (semantic/util-modes))
@@ -71,12 +100,21 @@
  '(gnus-secondary-select-methods nil)
  '(gnus-select-method (quote (nntp "news.tomica.ru")))
  '(haskell-check-command "ghc -fno-code")
- '(haskell-mode-hook (quote (turn-on-haskell-indentation turn-on-eldoc-mode turn-on-haskell-doc-mode imenu-add-menubar-index)))
+ '(haskell-doc-chop-off-context nil)
+ '(haskell-doc-show-global-types t)
+ '(haskell-doc-show-reserved nil)
+ '(haskell-doc-show-strategy nil)
+ '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
+ '(haskell-indent-look-past-empty-line nil)
+ '(haskell-indent-offset 2)
+ '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation turn-on-font-lock)))
  '(imenu-auto-rescan t)
  '(imenu-max-item-length 100)
+ '(indent-tabs-mode nil)
  '(inferior-haskell-wait-and-jump t)
  '(inhibit-default-init t)
  '(inhibit-startup-screen t)
+ '(line-move-visual nil)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-ignore-case t)
  '(ls-lisp-support-shell-wildcards nil)
@@ -88,6 +126,7 @@
  '(next-line-add-newlines nil)
  '(nxml-attribute-indent 6)
  '(nxml-child-indent 3)
+ '(nxml-mode-hook (quote (set-tab-width-3)))
  '(nxml-outline-child-indent 3)
  '(org-drawers (quote ("PROPERTIES" "CLOCK" "LOGBOOK" "HIDDEN")))
  '(org-enforce-todo-checkbox-dependencies t)
@@ -113,8 +152,10 @@
  '(speedbar-visiting-tag-hook (quote (speedbar-highlight-one-tag-line speedbar-recenter-to-top)))
  '(sql-mysql-program "mysqlc")
  '(sql-oracle-program "sqlplus")
- '(tab-width 3)
  '(tool-bar-mode nil)
+ '(track-eol t)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(uniquify-trailing-separator-p t)
  '(url-be-asynchronous t)
  '(url-news-server nil)
  '(url-privacy-level (quote (email cookie)))
@@ -429,20 +470,20 @@
 ;; 	(background-color . "honeydew")
 	))
 
-;; (Xlaunch 
-;;  ;(set-my-faces "old")
-;;  (set-my-faces "blue")
-;;  ;(set-my-faces "black")
-;;  )
-;; (JustTerm
-;;  ;(set-my-faces "black-term")
-;;  (set-my-faces "blue-term")
-;;  ;(set-my-faces "blue2-term")
-;;  )
+(Xlaunch 
+ ;(set-my-faces "old")
+ (set-my-faces "blue")
+ ;(set-my-faces "black")
+ )
+(JustTerm
+ ;(set-my-faces "black-term")
+ (set-my-faces "blue-term")
+ ;(set-my-faces "blue2-term")
+ )
 
-(add-to-list 'load-path "~/.emacs.d/color-theme" 'append)
-(require 'color-theme)
-(color-theme-initialize)
+;; (add-to-list 'load-path "~/.emacs.d/color-theme" 'append)
+;; (require 'color-theme)
+;; (color-theme-initialize)
 
 ; Some new Colors for Font-lock. 
 (setq font-lock-mode-maximum-decoration t)
@@ -489,31 +530,14 @@
 ;(desktop-load-default) 
 ;(desktop-read) 
 
+;; Auto save desktop
+(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 
 ;(setq load-path (cons "c:/emacs/lisp/w3" load-path))
 ;(require 'w3-auto)
 
 ;(setq load-path (cons "c:/emacs/site-lisp/xtla" load-path))
 ;(require 'xtla)
-
-;; Erlang mode
-(setq load-path (cons "c:/bin/erl5.7.4/lib/tools-2.6.5/emacs" load-path))
-(setq erlang-root-dir "c:/bin/erl5.7.4")
-(setq exec-path (cons "c:/bin/erl5.7.4/bin" exec-path))
-(require 'erlang-start)
-
-(setq load-path (cons "c:/emacs/site-lisp/git" load-path))
-(require 'git)
-(require 'git-blame)
-(setq load-path (cons "c:/emacs/site-lisp/git/gitsum" load-path))
-(require 'gitsum)
-(setq load-path (cons "c:/emacs/site-lisp/git/egg" load-path))
-(require 'egg)
-(load-library "egg-grep")
-;(setq load-path (cons "c:/emacs/site-lisp/git/magit" load-path))
-;(require 'magit)
-;(setq load-path (cons "c:/emacs/site-lisp/git/egit" load-path))
-;(require 'egit)
 
 
 ;My keys
@@ -552,3 +576,4 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 (scroll-bar-mode -1)
+(put 'scroll-left 'disabled nil)

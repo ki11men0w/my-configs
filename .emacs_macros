@@ -52,3 +52,7 @@
 ;оформляет выделенный регион в виде паскалевской строки
 (fset 'delphi-my-make-string
    [?\C-x ?n ?n ?\M-x ?q ?u ?e ?r ?y ?- ?r ?e ?p ?l ?a ?c ?e return ?' return ?' ?' return ?! home ?\M-x ?q ?u ?e ?r ?y ?- ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?  ?+ ?$ return return ?! home ?\C-  end up ?\C-x ?r ?t ?' return home ?\M-x ?q ?u ?e ?r ?y ?- ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?$ return ?' ?  ?+ ?C ?R ?L ?F ?+ return ?! backspace ?\; home ?\C-  end ?\M-x ?a ?l ?i ?g ?n ?- ?r ?e ?g ?e ?x ?p return ?' ?  ?\\ ?+ ?C ?R ?L ?F return ?\C-  home ?\M-x ?u ?n ?t ?a ?b ?i ?f ?y return end ?\C-  home ?\C-x ?n ?w ?\C-\M-\\])
+
+; фоформляет выделенный участок буфера в виде SQL
+(fset 'insert-sql-into-delphi
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 114 32 46 24 24 24 114 32 44 134217765 39 return 39 39 return 33 24 114 106 46 67108896 24 114 106 44 201326629 94 return 65 100 100 40 39 return 33 5 24 114 32 46 67108896 24 114 106 44 1 24 114 32 44 201326629 36 return 39 41 59 return 33 67108896 114 32 46 31 24 114 32 46 24 24 67108896 24 114 106 44 134217848 97 108 105 103 110 32 114 101 103 101 32 return 39 41 59 36 return 24 24 134217756] 0 "%d")) arg)))
