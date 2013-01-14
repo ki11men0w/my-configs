@@ -563,10 +563,10 @@
 (load-library "~/.emacs_macros")
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(ebrowse-root-class-face ((t (:foreground "light blue" :weight bold))))
  '(egg-diff-add ((((class color) (background dark)) (:foreground "LightGreen"))))
  '(org-hide ((((background dark)) (:foreground "DarkSlateBlue")))))
