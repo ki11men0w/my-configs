@@ -21,6 +21,13 @@
 (load-library "ls-lisp")
 (load-library "~/.emacs_hooks")
 (load-library "haskell-mode/haskell-site-file")
+
+;; Loading ghc-mod
+(setq load-path (cons "c:/emacs/site-lisp/haskell-mode/ghc-mod" load-path))
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+
 (load-library "plsql")
 ;(autoload 'plsql "plsql" "PL/SQL editing mode 1." t)
 ;(autoload 'plsql-mode "plsql" "PL/SQL editing mode 2." t)
@@ -29,10 +36,10 @@
 (require 'uniquify)
 
 ;; Erlang mode
-(setq load-path (cons "c:/bin/erl5.7.4/lib/tools-2.6.5/emacs" load-path))
-(setq erlang-root-dir "c:/bin/erl5.7.4")
-(setq exec-path (cons "c:/bin/erl5.7.4/bin" exec-path))
-(require 'erlang-start)
+;;(setq load-path (cons "c:/bin/erl5.7.4/lib/tools-2.6.5/emacs" load-path))
+;;(setq erlang-root-dir "c:/bin/erl5.7.4")
+;;(setq exec-path (cons "c:/bin/erl5.7.4/bin" exec-path))
+;;(require 'erlang-start)
 
 
 (setq load-path (cons "c:/emacs/site-lisp/git/egg" load-path))
@@ -42,20 +49,22 @@
 ;;(require 'git)
 (require 'git-blame)
 (setq load-path (cons "c:/emacs/site-lisp/git/gitsum" load-path))
-;(require 'gitsum)
+(require 'gitsum)
 
 ;(setq load-path (cons "c:/emacs/site-lisp/git/magit" load-path))
 ;(require 'magit)
 ;(setq load-path (cons "c:/emacs/site-lisp/git/egit" load-path))
 ;(require 'egit)
 
-
+(require 'plsql)
+(require 'sqlplus)
+(add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(Buffer-menu-buffer+size-width 54)
  '(Buffer-menu-mode-width 12)
  '(auto-compression-mode t nil (jka-compr))
@@ -87,14 +96,15 @@
  '(dired-recursive-deletes (quote always))
  '(ediff-cmp-program "diff")
  '(ediff-keep-variants nil)
+ '(egg-git-log-extra-params "--encoding=cp1251")
  '(egg-patch-command "c:\\bin\\git\\bin\\patch.exe")
  '(egg-quit-window-actions (quote ((egg-status-buffer-mode kill restore-windows) (egg-commit-buffer-mode kill restore-windows))))
  '(fill-column 100)
  '(frame-background-mode (quote dark))
- '(global-semantic-highlight-edits-mode t nil (semantic/util-modes))
- '(global-semantic-highlight-func-mode t nil (semantic/util-modes))
- '(global-semantic-show-unmatched-syntax-mode t nil (semantic/util-modes))
- '(global-semantic-stickyfunc-mode t nil (semantic/util-modes))
+ '(global-semantic-highlight-edits-mode t)
+ '(global-semantic-highlight-func-mode t)
+ '(global-semantic-show-unmatched-syntax-mode t)
+ '(global-semantic-stickyfunc-mode t)
  '(gnus-nntpserver-file "c:/emacs/etc/nntpserver")
  '(gnus-read-active-file nil)
  '(gnus-secondary-select-methods nil)
@@ -107,7 +117,8 @@
  '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
  '(haskell-indent-look-past-empty-line nil)
  '(haskell-indent-offset 2)
- '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation turn-on-font-lock)))
+ '(haskell-indent-thenelse 2)
+ '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-font-lock (lambda nil (ghc-init)))))
  '(imenu-auto-rescan t)
  '(imenu-max-item-length 100)
  '(indent-tabs-mode nil)
@@ -152,6 +163,12 @@
  '(speedbar-visiting-tag-hook (quote (speedbar-highlight-one-tag-line speedbar-recenter-to-top)))
  '(sql-mysql-program "mysqlc")
  '(sql-oracle-program "sqlplus")
+ '(sql-postgres-login-params (quote ((user :default "Maksim.Golubev") password (database :default "Maksim.Golubev") (server :default "localhost"))))
+ '(sql-postgres-program "c:\\bin\\PostgreSQL\\current\\bin\\psql")
+ '(sql-product (quote oracle))
+ '(sqlplus-html-output-encoding "cp1251")
+ '(sqlplus-initial-strings (quote ("set sqlnumber off" "set tab off" "set linesize 4000" "set echo off" "set newpage 1" "set space 1" "set feedback 6" "set heading on" "set trimspool off" "set wrap on" "set timing on" "set feedback on" "set sqlblanklines on")))
+ '(sqlplus-select-result-max-col-width 100)
  '(tool-bar-mode nil)
  '(track-eol t)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
@@ -166,6 +183,8 @@
  '(w3-default-homepage "http://mail:10000")
  '(wdired-always-move-to-filename-beginning (quote sometimes))
  '(which-func-modes (quote (emacs-lisp-mode c-mode c++-mode perl-mode cperl-mode makefile-mode sh-mode fortran-mode python-mode plsql-mode))))
+
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (setq default-indicate-empty-lines 1)
 
@@ -460,9 +479,9 @@
       '(
 ;;; Define here the default geometry or via ~/.Xdefaults.
 	;;(width . 155) (height . 58)
-	(width . 155) (height . 57)
+	(width . 190) (height . 63)
 	(top . 0)
-	(left . 0)
+	(left . 130)
 	;(cursor-type . bar)
 	(cursor-type . box)
 ;; 	(cursor-color . "red")
