@@ -62,6 +62,8 @@
 ;(setq load-path (cons "c:/emacs/site-lisp/git/egit" load-path))
 ;(require 'egit)
 
+
+(require 'hamlet-mode)
 (require 'plsql)
 (require 'sqlplus)
 (add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
@@ -158,6 +160,7 @@
  '(recentf-max-menu-items 25)
  '(recentf-max-saved-items 500)
  '(recentf-mode t nil (recentf))
+ '(safe-local-variable-values (quote ((hamlet/basic-offset . 4) (haskell-process-use-ghci . t) (haskell-indent-spaces . 4))))
  '(semantic-default-submodes (quote (global-semantic-highlight-func-mode global-semantic-decoration-mode global-semantic-stickyfunc-mode global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode)))
  '(sgml-basic-offset 3)
  '(sgml-mode-hook (quote (set-tab-width-3)))
@@ -598,5 +601,48 @@
 ; Loading my macros
 (load-library "~/.emacs_macros")
 
+
+(require 'hamlet-mode)
+(require 'mmm-vars)
+(require 'mmm-auto)
+(setq mmm-global-mode 'maybe)
+(mmm-add-classes
+ '((hamlet-quasiquote
+    :submode hamlet-mode
+    :delimiter-mode nil
+    :front "\\[[xsw]?hamlet|"
+    :back "|\\]")))
+(mmm-add-mode-ext-class 'haskell-mode nil 'hamlet-quasiquote)
+
+(mmm-add-classes
+ '((sql-quasiquote
+    :submode sql-mode
+    :delimiter-mode nil
+    :front "\\[sql|"
+    :back "|\\]")))
+(mmm-add-mode-ext-class 'haskell-mode nil 'sql-quasiquote)
+
+(mmm-add-classes
+ '((julius-quasiquote
+    :submode js-mode
+    :delimiter-mode nil
+    :front "\\[julius|"
+    :back "|\\]")))
+(mmm-add-mode-ext-class 'haskell-mode nil 'julius-quasiquote)
+
+(mmm-add-classes
+ '((lucius-quasiquote
+    :submode css-mode
+    :delimiter-mode nil
+    :front "\\[lucius|"
+    :back "|\\]")))
+(mmm-add-mode-ext-class 'haskell-mode nil 'lucius-quasiquote)
+
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;   '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (when (< emacs-major-version 24)
+;;   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+;; (package-initialize)
 
 
