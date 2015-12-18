@@ -9,6 +9,12 @@
 ;; memory consumption, but remind to add these lines before dired.el
 ;; gets loaded (i.e., near the beginning of your .emacs file):
 ;;
+
+(server-start)
+;(load-library "gnuserv")
+;(gnuserv-start)
+;(setq gnuserv-frame (selected-frame))
+
 (autoload 'wdired-change-to-wdired-mode "wdired")
 (add-hook 'dired-load-hook
           '(lambda ()
@@ -568,10 +574,6 @@
 ; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
 ; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
 
-;(server-start)
-(load-library "gnuserv")
-(gnuserv-start)
-;(setq gnuserv-frame (selected-frame))
 
 (put 'set-goal-column 'disabled nil)
 
