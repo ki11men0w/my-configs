@@ -580,8 +580,11 @@
 
 (add-to-list 'same-window-buffer-names '("*Buffer List*"))
 
-; Loading my macros
-(load-library "~/.emacs_macros")
+(put 'dired-find-alternate-file 'disabled nil)
+
+(scroll-bar-mode -1)
+(put 'scroll-left 'disabled nil)
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -592,9 +595,8 @@
  '(egg-diff-add ((((class color) (background dark)) (:foreground "LightGreen"))))
  '(org-hide ((((background dark)) (:foreground "DarkSlateBlue")))))
 
+; Loading my macros
+(load-library "~/.emacs_macros")
 
 
-(put 'dired-find-alternate-file 'disabled nil)
 
-(scroll-bar-mode -1)
-(put 'scroll-left 'disabled nil)
