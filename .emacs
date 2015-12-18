@@ -103,6 +103,7 @@
  '(ediff-cmp-program "diff")
  '(ediff-keep-variants nil)
  '(egg-git-log-extra-params "--encoding=cp1251")
+ '(egg-log-graph-chars [9679 124 45 47 92])
  '(egg-patch-command "c:\\bin\\git\\bin\\patch.exe")
  '(egg-quit-window-actions (quote ((egg-status-buffer-mode kill restore-windows) (egg-commit-buffer-mode kill restore-windows))))
  '(fill-column 100)
