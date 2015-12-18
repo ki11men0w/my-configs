@@ -15,6 +15,24 @@
 ;(gnuserv-start)
 ;(setq gnuserv-frame (selected-frame))
 
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  ;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+  (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+  )
+
+(require 'cl)
+(cl-labels ((add-path (p)
+                     (add-to-list 'load-path (concat "~/.emacs.d/" p))))
+  (add-path "site-lisp")
+  (add-path "site-lisp/git/egg")
+  )
+
 (autoload 'wdired-change-to-wdired-mode "wdired")
 (add-hook 'dired-load-hook
           '(lambda ()
@@ -26,15 +44,16 @@
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 (load-library "ls-lisp")
 (load-library "~/.emacs_hooks")
-(load-library "haskell-mode/haskell-site-file")
+;;(load-library "haskell-mode/haskell-site-file")
 
 ;; Loading ghc-mod
 (setq load-path (cons "c:/emacs/site-lisp/haskell-mode/ghc-mod" load-path))
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
+;;(load-library "nhexl-mode")
 
-(load-library "plsql")
+;(load-library "plsql")
 ;(autoload 'plsql "plsql" "PL/SQL editing mode 1." t)
 ;(autoload 'plsql-mode "plsql" "PL/SQL editing mode 2." t)
 ;(autoload 'sql-mode "sql" "PL/SQL editing mode." t)
@@ -48,14 +67,15 @@
 ;;(require 'erlang-start)
 
 
-(setq load-path (cons "c:/emacs/site-lisp/git/egg" load-path))
+;;(setq load-path (cons "c:/emacs/site-lisp/git/egg" load-path))
 (require 'egg)
-(load-library "egg-grep")
+;;(require 'egg-grep)
+;;(load-library "egg-grep")
 ;;(setq load-path (cons "c:/emacs/site-lisp/git" load-path))
 ;;(require 'git)
-(require 'git-blame)
-(setq load-path (cons "c:/emacs/site-lisp/git/gitsum" load-path))
-(require 'gitsum)
+;;(require 'git-blame)
+;;(setq load-path (cons "c:/emacs/site-lisp/git/gitsum" load-path))
+;;(require 'gitsum)
 
 ;(setq load-path (cons "c:/emacs/site-lisp/git/magit" load-path))
 ;(require 'magit)
@@ -63,10 +83,7 @@
 ;(require 'egit)
 
 
-(require 'hamlet-mode)
-(require 'plsql)
-(require 'sqlplus)
-(add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
+;;(require 'hamlet-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -601,6 +618,10 @@
 ; Loading my macros
 (load-library "~/.emacs_macros")
 
+
+;(require 'plsql)
+;;(require 'sqlplus)
+(add-to-list 'auto-mode-alist '("\\.sqp\\'" . sqlplus-mode))
 
 (require 'hamlet-mode)
 (require 'mmm-vars)
