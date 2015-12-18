@@ -176,7 +176,6 @@
  '(url-be-asynchronous t)
  '(url-news-server nil)
  '(url-privacy-level (quote (email cookie)))
- '(url-proxy-services (quote (("http" . "proxy.net.billing.ru:3128"))))
  '(user-full-name "Maksim Golubev")
  '(user-mail-address "maksim.golubev72@gmail.com")
  '(visible-bell t)
