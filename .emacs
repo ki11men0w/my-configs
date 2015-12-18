@@ -210,6 +210,16 @@
  '(wdired-always-move-to-filename-beginning (quote sometimes))
  '(which-func-modes (quote (emacs-lisp-mode c-mode c++-mode perl-mode cperl-mode makefile-mode sh-mode fortran-mode python-mode plsql-mode))))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ebrowse-root-class-face ((t (:foreground "light blue" :weight bold))))
+ '(egg-diff-add ((((class color) (background dark)) (:foreground "LightGreen"))))
+ '(org-hide ((((background dark)) (:foreground "DarkSlateBlue")))))
+
+
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (setq default-indicate-empty-lines 1)
@@ -605,15 +615,6 @@
 (scroll-bar-mode -1)
 (put 'scroll-left 'disabled nil)
 
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ebrowse-root-class-face ((t (:foreground "light blue" :weight bold))))
- '(egg-diff-add ((((class color) (background dark)) (:foreground "LightGreen"))))
- '(org-hide ((((background dark)) (:foreground "DarkSlateBlue")))))
 
 ; Loading my macros
 (load-library "~/.emacs_macros")
