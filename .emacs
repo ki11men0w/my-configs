@@ -556,7 +556,7 @@
 ;(desktop-read) 
 
 ;; Auto save desktop
-(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+;(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 
 ;(setq load-path (cons "c:/emacs/lisp/w3" load-path))
 ;(require 'w3-auto)
