@@ -47,8 +47,8 @@
 ;;(load-library "haskell-mode/haskell-site-file")
 
 ;; Loading ghc-mod
-(setq load-path (cons "c:/emacs/site-lisp/haskell-mode/ghc-mod" load-path))
-(autoload 'ghc-init "ghc" nil t)
+;;(setq load-path (cons "c:/emacs/site-lisp/haskell-mode/ghc-mod" load-path))
+;;(autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;;(load-library "nhexl-mode")
@@ -264,7 +264,7 @@
       (cons '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode)
 	    auto-mode-alist))
 
-(autoload 'delphi-mode "delphi")
+;;(autoload 'delphi-mode "delphi")
 (setq auto-mode-alist
       (cons '("\\.\\(pas\\|dpr\\|dpk\\|inc\\)$" . delphi-mode) 
 	    auto-mode-alist))
@@ -275,9 +275,10 @@
 ;	    auto-mode-alist))
 
 ;; PL/SQL mode
-(setq auto-mode-alist
-      (cons '("\\.\\(sql\\)$" . plsql-mode) 
-	    auto-mode-alist))
+(when (require 'plsql nil t)
+  (setq auto-mode-alist
+        (cons '("\\.\\(sql\\)\\'$" . plsql-mode) 
+              auto-mode-alist)))
 ;(speedbar-add-supported-extension "sql")
 
 ; (autoload 'sqlplus "sqlplus-mode"
