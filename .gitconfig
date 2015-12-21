@@ -1,0 +1,74 @@
+[user]
+	name = Maksim Golubev
+	#email = maksim.golubev72@gmail.com
+	email = maksim.golubev@billing.ru
+
+[merge]
+        tool = ediff
+[mergetool "ediff"]
+        cmd = emacsclient -c --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+
+#[mergetool "ediff"]
+#        cmd = emacsclient --eval \"(git-mergetool-emacsclient-ediff \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" \\\"$MERGED\\\")\"
+#        trustExitCode = true
+[log]
+	date = iso
+        follow = true
+[i18n]
+	#logOutputEncoding = cp1251
+	#commitEncoding = cp1251
+
+[alias]
+        tree = log --decorate --all --full-history --raw --graph --date-order
+        stree = log --decorate --all --full-history --graph --date-order
+        treeb = log --decorate --full-history --raw --graph --date-order
+	#sstree = log --format=\"%C(yellow)%h%Creset %s%Cgreen%d%Creset\" --all --full-history --graph
+	sstree = log --format=oneline --decorate --all --full-history --graph --date-order
+	fe = fetch
+	ci = commit
+	fet = fetch --tags
+	st = status
+	brsu = branch --set-upstream -f master origin/master
+	co = checkout
+        logf = log --follow
+[apply]
+	whiteSpace = nowarn
+[core]
+	autocrlf = false
+	quotePath = false
+	excludesFile = c:/Users/maksim.golubev/.gitignore.my
+
+	# В версиях после 1.7.9 less работает некорректно с латиницей (всегда считает что на входе у
+	# него utf-8, не обращая внимания на опцию i18n.logoutputencoding). Поэтому используем здесь
+	# старый корректный less.
+	#pager = c:/bin/git-1.7.9/bin/less.exe
+	# Решение с использованием iconv
+	#pager = iconv -f CP1251 -t UTF-8 | less
+
+	filemode = false
+[rebase]
+        auutosquash = true
+
+[pack]
+        # Что-бы не ругалось на больших репозиториях
+	packSizeLimit = 2g
+
+[diff "astextplain"]
+	textconv = astextplain
+
+[url "c:/var/gitrepo/"]
+	insteadOf = gitrepo:
+[url "c:/var/gitrepo/RSS/"]
+	insteadOf = rss:
+[url "c:/var/gitrepo/TOOLS/"]
+	insteadOf = tools:
+[url "c:/var/gitrepo/BIN/"]
+	insteadOf = bin:
+[url "srv-git:/Repositories/peterservice/"]
+	insteadOf = ps_old:
+[url "ssh://git.billing.ru/Repositories/peterservice/"]
+	insteadOf = ps:
+[url "ssh://git@stash.billing.ru:2222/"]
+	insteadOf = stash:
+[push]
+	default = upstream
