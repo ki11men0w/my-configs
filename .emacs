@@ -1,22 +1,9 @@
 ;; -*- coding: utf-8 -*-
 
-;;; One can load wdired in two ways.
-;;
-;;; This is the easy way:
-;; (require 'wdired)
-;; (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-;;; One can load wdired by theese two lines
-;;
-;; This is recommended way for faster emacs startup time and lower
-;; memory consumption, but remind to add these lines before dired.el
-;; gets loaded (i.e., near the beginning of your .emacs file):
-;;
-
 ;(server-start)
 ;(load-library "gnuserv")
 ;(gnuserv-start)
 ;(setq gnuserv-frame (selected-frame))
-
 
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -35,6 +22,17 @@
   (add-path "lisp/git/egg")
   )
 
+;;; One can load wdired in two ways.
+;;
+;;; This is the easy way:
+;; (require 'wdired)
+;; (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
+;;; One can load wdired by theese two lines
+;;
+;; This is recommended way for faster emacs startup time and lower
+;; memory consumption, but remind to add these lines before dired.el
+;; gets loaded (i.e., near the beginning of your .emacs file):
+;;
 (autoload 'wdired-change-to-wdired-mode "wdired")
 (add-hook 'dired-load-hook
           '(lambda ()
@@ -276,10 +274,6 @@
   (list 'if (string-match "GNU Emacs" (version)) (cons 'progn x)))
 (defmacro XEmacs (&rest x)
   (list 'if (string-match "XEmacs" (version)) (cons 'progn x)))
-;; (defmacro Xlaunch (&rest x)
-;;   (list 'if (eq window-system 'x)(cons 'progn x)))
-;; (defmacro JustTerm (&rest x)
-;;   (list 'if (eq window-system nil)(cons 'progn x)))
 (defmacro Xlaunch (&rest x)
   (list 'if (eq window-system 'w32)(cons 'progn x)))
 (defmacro JustTerm (&rest x)
