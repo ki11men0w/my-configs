@@ -205,6 +205,7 @@
    (quote
     (global-semantic-highlight-func-mode global-semantic-decoration-mode global-semantic-stickyfunc-mode global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode)))
  '(server-mode t)
+ '(server-window (quote pop-to-buffer))
  '(sgml-basic-offset 3)
  '(sgml-mode-hook (quote (set-tab-width-3)))
  '(sgml-xml-mode t)
@@ -772,3 +773,12 @@
 ;;   (exit-recursive-edit))
 
 ;; (add-hook 'ediff-after-quit-hooks 'git-mergetool-emacsclient-ediff-after-quit-hook 'append)
+
+;;; Переместить текущий буфер в отдельный фрэйм.
+(defun delete-window-and-open-in-new-frame ()
+  (interactive)
+  (let (buffer (current-buffer))
+    (delete-window)
+    (switch-to-buffer-other-frame buffer)))
+
+(global-set-key (kbd "C-x 5 5") 'delete-window-and-open-in-new-frame)
