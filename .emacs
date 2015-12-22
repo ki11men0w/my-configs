@@ -10,7 +10,7 @@
 ;; gets loaded (i.e., near the beginning of your .emacs file):
 ;;
 
-(server-start)
+;(server-start)
 ;(load-library "gnuserv")
 ;(gnuserv-start)
 ;(setq gnuserv-frame (selected-frame))
@@ -179,6 +179,7 @@
  '(recentf-mode t nil (recentf))
  '(safe-local-variable-values (quote ((hamlet/basic-offset . 4) (haskell-process-use-ghci . t) (haskell-indent-spaces . 4))))
  '(semantic-default-submodes (quote (global-semantic-highlight-func-mode global-semantic-decoration-mode global-semantic-stickyfunc-mode global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode)))
+ '(server-mode t)
  '(sgml-basic-offset 3)
  '(sgml-mode-hook (quote (set-tab-width-3)))
  '(sgml-xml-mode t)
