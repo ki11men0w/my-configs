@@ -29,8 +29,8 @@
 (require 'cl)
 (cl-labels ((add-path (p)
                      (add-to-list 'load-path (concat "~/.emacs.d/" p))))
-  (add-path "site-lisp")
-  (add-path "site-lisp/git/egg")
+  (add-path "lisp")
+  (add-path "lisp/git/egg")
   )
 
 (autoload 'wdired-change-to-wdired-mode "wdired")
