@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 ;;; One can load wdired in two ways.
 ;;
 ;;; This is the easy way:
@@ -342,15 +344,15 @@
 ;       (cons '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode)
 ;        auto-mode-alist))
 
-;; Настройки Orgmode
+;; РќР°СЃС‚СЂРѕР№РєРё Orgmode
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (global-set-key "\C-ci" 'org-indent-mode)
-;; Включаем font-lock-mode в буферах с org-mode
-;; (закомментировано т.к. font-lock-mode включён у меня глобално, и включать его
-;; отдельно нет необходимости)
+;; Р’РєР»СЋС‡Р°РµРј font-lock-mode РІ Р±СѓС„РµСЂР°С… СЃ org-mode
+;; (Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°РЅРѕ С‚.Рє. font-lock-mode РІРєР»СЋС‡С‘РЅ Сѓ РјРµРЅСЏ РіР»РѕР±Р°Р»РЅРѕ, Рё РІРєР»СЋС‡Р°С‚СЊ РµРіРѕ
+;; РѕС‚РґРµР»СЊРЅРѕ РЅРµС‚ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё)
 ;(add-hook 'org-mode-hook 'turn-on-font-lock)  ; Org buffers only
 
 
