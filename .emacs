@@ -28,7 +28,7 @@
 
 (require 'cl)
 (cl-labels ((add-path (p)
-                     (add-to-list 'load-path (concat "~/.emacs.d/" p))))
+                     (add-to-list 'load-path (concat user-emacs-directory p))))
   (add-path "lisp")
   (add-path "lisp/git/egg")
   )
