@@ -205,7 +205,6 @@
    (quote
     (global-semantic-highlight-func-mode global-semantic-decoration-mode global-semantic-stickyfunc-mode global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode)))
  '(server-mode t)
- '(server-window (quote pop-to-buffer))
  '(sgml-basic-offset 3)
  '(sgml-mode-hook (quote (set-tab-width-3)))
  '(sgml-xml-mode t)
