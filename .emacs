@@ -99,7 +99,9 @@
  '(c-mode-hook (quote (set-tab-width-4)))
  '(calendar-week-start-day 1)
  '(change-log-mode-hook (quote (turn-on-auto-fill)))
- '(completion-ignored-extensions (quote ("CVS/" ".o" "~" ".bin" ".bak" ".obj" ".map" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".dvi" ".fmt" ".tfm" ".pdf" ".class" ".fas" ".lib" ".x86f" ".sparcf" ".lo" ".la" ".toc" ".log" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".dcu")))
+ '(completion-ignored-extensions
+   (quote
+    ("CVS/" ".o" "~" ".bin" ".bak" ".obj" ".map" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".dvi" ".fmt" ".tfm" ".pdf" ".class" ".fas" ".lib" ".x86f" ".sparcf" ".lo" ".la" ".toc" ".log" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".dcu")))
  '(confirm-kill-emacs (quote y-or-n-p))
  '(cvs-allow-dir-commit t)
  '(cvs-display-full-path nil)
@@ -116,7 +118,8 @@
  '(desktop-save-mode t)
  '(diff-switches "-u")
  '(dired-dwim-target t)
- '(dired-garbage-files-regexp "\\.\\(?:log\\|orig\\|rej\\|toc\\|~...\\|dcu\\|keep\\(\\..+\\)\\)\\'")
+ '(dired-garbage-files-regexp
+   "\\.\\(?:log\\|orig\\|rej\\|toc\\|~...\\|dcu\\|keep\\(\\..+\\)\\)\\'")
  '(dired-recursive-copies (quote always))
  '(dired-recursive-deletes (quote always))
  '(ediff-cmp-program "diff")
@@ -124,7 +127,10 @@
  '(egg-git-log-extra-params "--encoding=cp1251")
  '(egg-log-graph-chars [9679 124 45 47 92])
  '(egg-patch-command "c:\\bin\\git\\bin\\patch.exe")
- '(egg-quit-window-actions (quote ((egg-status-buffer-mode kill restore-windows) (egg-commit-buffer-mode kill restore-windows))))
+ '(egg-quit-window-actions
+   (quote
+    ((egg-status-buffer-mode kill restore-windows)
+     (egg-commit-buffer-mode kill restore-windows))))
  '(fill-column 100)
  '(frame-background-mode (quote dark))
  '(global-semantic-highlight-edits-mode t)
@@ -140,11 +146,22 @@
  '(haskell-doc-show-global-types t)
  '(haskell-doc-show-reserved nil)
  '(haskell-doc-show-strategy nil)
- '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
+ '(haskell-indent-after-keywords
+   (quote
+    (("where" 2 0)
+     ("of" 2)
+     ("do" 2)
+     ("in" 2 0)
+     ("{" 2)
+     "if" "then" "else" "let")))
  '(haskell-indent-look-past-empty-line nil)
  '(haskell-indent-offset 2)
  '(haskell-indent-thenelse 2)
- '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-font-lock (lambda nil (ghc-init)))))
+ '(haskell-mode-hook
+   (quote
+    (turn-on-haskell-indent turn-on-font-lock
+                            (lambda nil
+                              (ghc-init)))) t)
  '(imenu-auto-rescan t)
  '(imenu-max-item-length 100)
  '(indent-tabs-mode nil)
@@ -177,25 +194,50 @@
  '(recentf-max-menu-items 25)
  '(recentf-max-saved-items 500)
  '(recentf-mode t nil (recentf))
- '(safe-local-variable-values (quote ((hamlet/basic-offset . 4) (haskell-process-use-ghci . t) (haskell-indent-spaces . 4))))
- '(semantic-default-submodes (quote (global-semantic-highlight-func-mode global-semantic-decoration-mode global-semantic-stickyfunc-mode global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode)))
+ '(safe-local-variable-values
+   (quote
+    ((hamlet/basic-offset . 4)
+     (haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4))))
+ '(semantic-default-submodes
+   (quote
+    (global-semantic-highlight-func-mode global-semantic-decoration-mode global-semantic-stickyfunc-mode global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode)))
  '(server-mode t)
+ '(server-window (quote pop-to-buffer))
  '(sgml-basic-offset 3)
  '(sgml-mode-hook (quote (set-tab-width-3)))
  '(sgml-xml-mode t)
  '(smtpmail-default-smtp-server "mail.billing.ru")
  '(smtpmail-smtp-server "mail.billing.ru")
  '(speedbar-directory-unshown-regexp "^\\(CVS\\|RCS\\|SCCS\\|.svn\\)\\'")
- '(speedbar-frame-parameters (quote ((minibuffer) (width . 60) (border-width . 0) (menu-bar-lines . 0) (tool-bar-lines . 0) (unsplittable . t))))
- '(speedbar-supported-extension-expressions (quote (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".emacs" ".l" ".lsp" ".p" ".java" ".f\\(90\\|77\\|or\\)?" ".ada" ".p[lm]" ".tcl" ".m" ".scm" ".pm" ".py" ".g" ".s?html" "[Mm]akefile\\(\\.in\\)?" ".sql")))
- '(speedbar-visiting-tag-hook (quote (speedbar-highlight-one-tag-line speedbar-recenter-to-top)))
+ '(speedbar-frame-parameters
+   (quote
+    ((minibuffer)
+     (width . 60)
+     (border-width . 0)
+     (menu-bar-lines . 0)
+     (tool-bar-lines . 0)
+     (unsplittable . t))))
+ '(speedbar-supported-extension-expressions
+   (quote
+    (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".emacs" ".l" ".lsp" ".p" ".java" ".f\\(90\\|77\\|or\\)?" ".ada" ".p[lm]" ".tcl" ".m" ".scm" ".pm" ".py" ".g" ".s?html" "[Mm]akefile\\(\\.in\\)?" ".sql")))
+ '(speedbar-visiting-tag-hook
+   (quote
+    (speedbar-highlight-one-tag-line speedbar-recenter-to-top)))
  '(sql-mysql-program "mysqlc")
  '(sql-oracle-program "sqlplus")
- '(sql-postgres-login-params (quote ((user :default "Maksim.Golubev") password (database :default "Maksim.Golubev") (server :default "localhost"))))
+ '(sql-postgres-login-params
+   (quote
+    ((user :default "Maksim.Golubev")
+     password
+     (database :default "Maksim.Golubev")
+     (server :default "localhost"))))
  '(sql-postgres-program "c:\\bin\\PostgreSQL\\current\\bin\\psql")
  '(sql-product (quote oracle))
  '(sqlplus-html-output-encoding "cp1251")
- '(sqlplus-initial-strings (quote ("set sqlnumber off" "set tab off" "set linesize 4000" "set echo off" "set newpage 1" "set space 1" "set feedback 6" "set heading on" "set trimspool off" "set wrap on" "set timing on" "set feedback on" "set sqlblanklines on")))
+ '(sqlplus-initial-strings
+   (quote
+    ("set sqlnumber off" "set tab off" "set linesize 4000" "set echo off" "set newpage 1" "set space 1" "set feedback 6" "set heading on" "set trimspool off" "set wrap on" "set timing on" "set feedback on" "set sqlblanklines on")))
  '(sqlplus-select-result-max-col-width 100)
  '(tool-bar-mode nil)
  '(track-eol t)
@@ -209,7 +251,9 @@
  '(visible-bell t)
  '(w3-default-homepage "http://mail:10000")
  '(wdired-always-move-to-filename-beginning (quote sometimes))
- '(which-func-modes (quote (emacs-lisp-mode c-mode c++-mode perl-mode cperl-mode makefile-mode sh-mode fortran-mode python-mode plsql-mode))))
+ '(which-func-modes
+   (quote
+    (emacs-lisp-mode c-mode c++-mode perl-mode cperl-mode makefile-mode sh-mode fortran-mode python-mode plsql-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
