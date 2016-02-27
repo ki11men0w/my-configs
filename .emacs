@@ -275,7 +275,7 @@
 (defmacro XEmacs (&rest x)
   (list 'if (string-match "XEmacs" (version)) (cons 'progn x)))
 (defmacro Xlaunch (&rest x)
-  (list 'if (eq window-system 'w32)(cons 'progn x)))
+  (list 'if (not (eq window-system nil))(cons 'progn x)))
 (defmacro JustTerm (&rest x)
   (list 'if (eq window-system nil)(cons 'progn x)))
 
