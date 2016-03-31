@@ -132,6 +132,7 @@ target
 *.epoch
 
 catalina.base_IS_UNDEFINED
+catalina.home_IS_UNDEFINED
 
 maven-metadata-local.xml
 

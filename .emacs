@@ -99,6 +99,7 @@
  '(c-mode-hook (quote (set-tab-width-4)))
  '(calendar-week-start-day 1)
  '(change-log-mode-hook (quote (turn-on-auto-fill)))
+ '(comment-padding 1)
  '(completion-ignored-extensions
    (quote
     ("CVS/" ".o" "~" ".bin" ".bak" ".obj" ".map" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".dvi" ".fmt" ".tfm" ".pdf" ".class" ".fas" ".lib" ".x86f" ".sparcf" ".lo" ".la" ".toc" ".log" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".dcu")))
@@ -178,10 +179,13 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (4 ((shift) . 1) ((control)))))
  '(next-line-add-newlines nil)
- '(nxml-attribute-indent 6)
- '(nxml-child-indent 3)
- '(nxml-mode-hook (quote (set-tab-width-3)))
- '(nxml-outline-child-indent 3)
+ '(nxml-attribute-indent 8)
+ '(nxml-child-indent 4)
+ '(nxml-mode-hook (quote (set-tab-width-2)) t)
+ '(nxml-outline-child-indent 4)
+ '(opascal-case-label-indent 2)
+ '(opascal-compound-block-indent 1)
+ '(opascal-indent-level 2)
  '(org-drawers (quote ("PROPERTIES" "CLOCK" "LOGBOOK" "HIDDEN")))
  '(org-enforce-todo-checkbox-dependencies t)
  '(org-enforce-todo-dependencies t)
@@ -628,7 +632,7 @@
 ;(desktop-read) 
 
 ;; Auto save desktop
-;(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 
 ;(setq load-path (cons "c:/emacs/lisp/w3" load-path))
 ;(require 'w3-auto)
