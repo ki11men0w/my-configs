@@ -1,7 +1,7 @@
 [user]
 	name = Maksim Golubev
 	#email = maksim.golubev72@gmail.com
-	email = maksim.golubev@billing.ru
+	email = maksim.golubev72@gmail.com
 
 [merge]
         tool = ediff
@@ -19,24 +19,35 @@
 	#commitEncoding = cp1251
 
 [alias]
-        tree = log --decorate --all --full-history --raw --graph --date-order
-        stree = log --decorate --all --full-history --graph --date-order
-        treeb = log --decorate --full-history --raw --graph --date-order
+        tree = !git log --decorate --all --full-history --raw --graph --date-order --color --pretty=fuller | less -RS
+        stree = !git log --decorate --all --full-history --graph --date-order --color | less -RS
+        treeb = !git log --decorate --full-history --raw --graph --date-order --color | less -RS
 	#sstree = log --format=\"%C(yellow)%h%Creset %s%Cgreen%d%Creset\" --all --full-history --graph
-	sstree = log --format=oneline --decorate --all --full-history --graph --date-order
+	#sstree = log --format=oneline --decorate --all --full-history --graph --date-order
+	sstree = !git log --format=oneline --decorate --all --full-history --graph --date-order --color | less -RS
 	fe = fetch
 	ci = commit
 	fet = fetch --tags
-	st = status
+	st = status --branch --short
 	brsu = branch --set-upstream -f master origin/master
 	co = checkout
         logf = log --follow
+
+        search-all-history = !git rev-list --all | GIT_PAGER=cat xargs git grep
+
+        # Печатает хэш первого коммита в дереве на котором базируется текущий коммит (HEAD)
+        first-commit=rev-list --max-parents=0 HEAD
+
+        btrack = "!f() { git branch --force --track $1 origin/$1; }; f"
+
+        change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch -f --env-filter \"if [ \\\"$`echo $VAR`\\\" = '$OLD' ]; then export $VAR='$NEW'; fi\" $@; }; f"
+
 [apply]
 	whiteSpace = nowarn
 [core]
 	autocrlf = false
 	quotePath = false
-	excludesFile = c:/Users/maksim.golubev/.gitignore.my
+	excludesFile = ~/.gitignore.my
 
 	# В версиях после 1.7.9 less работает некорректно с латиницей (всегда считает что на входе у
 	# него utf-8, не обращая внимания на опцию i18n.logoutputencoding). Поэтому используем здесь
@@ -52,6 +63,63 @@
 [pack]
         # Что-бы не ругалось на больших репозиториях
 	packSizeLimit = 2g
+###########################################################################
+## Дополнительные команды для `git` связанные с обработкой бинарных файлов
+#
+
+[alias]
+
+        delete-original-refs = !git for-each-ref --format="%\\(refname\\)" refs/original/| xargs -n1 -I'{}' git update-ref -d '{}'
+        
+        # Печатает хэш первого коммита в дереве на котором базируется текущий коммит (HEAD)
+        first-commit=rev-list --max-parents=0 HEAD
+
+        # Поиск всех бинарных файлов появлявшихся в репозитории на протяжении всей истории коммитов от которых зависит текущий комит
+        # BINary branch history
+        bin = !git log --full-history --numstat                                     \
+                   | grep '^-'                                                      \
+                   | sed -r 's|(.*)\\{(.*) => (.*)\\}(.*)|\\1\\2\\4\\n\\1\\3\\4|g'  \
+                   | cut -f3                                                        \
+                   | sort -u
+
+        # Поиск всех бинарных файлов появлявшихся в репозитории на протяжении всей истории
+        # BINary All History
+        bina = !git log --all --full-history --numstat                              \
+                  | grep '^-'                                                      \
+                   | sed -r 's|(.*)\\{(.*) => (.*)\\}(.*)|\\1\\2\\4\\n\\1\\3\\4|g'  \
+                   | cut -f3                                                        \
+                   | sort -u
+
+        # Поиск бинарных файлов имеющихся в текущем выбранном коммите (HEAD) и расположенных в текущем или дочерних каталогах
+        # BINary Current commit and directory
+        binc = !bash -c \"\
+                export MY_ROOT_COMMIT=\\$(git first-commit)                                        \n\
+                git ls-files -z | xargs -0 -n1 -I'{}' git diff --numstat \\$MY_ROOT_COMMIT -- '{}' \
+                         | grep '^-'                                                               \
+                         | sed -r 's|(.*)\\{(.*) => (.*)\\}(.*)/|\\1\\2\\4\\n\\1\\3\\4|g'          \
+                         | grep -e "\\${GIT_PREFIX:-.}"                                            \
+                         | sed -r 's|${GIT_PREFIX:- }||g'                                          \
+                         | cut -f3                                                                 \
+                         | sort -u                                                                 \
+                \"
+
+        # Поиск бинарных файлов имеющихся в текущем выбранном коммите (HEAD) и расположенных в текущем или дочерних каталогах.
+        # Ищет быстрее чем `binc`, но может приводить к ошибкам если в репозитории есть файлы, которые в некоторых комитах были бинарными
+        # а в других - текстовыми.
+        # BINary Current commit and directory Fast
+        bincf = !bash -c \"\
+                comm -12                                                                   \
+                <(git bin                                                                  \
+                         | grep '^-'                                                       \
+                         | sed -r 's|(.*)\\{(.*) => (.*)\\}(.*)/|\\1\\2\\4\\n\\1\\3\\4|g'  \
+                         | sed -r 's|${GIT_PREFIX:- }||g'                                  \
+                         | cut -f3                                                         \
+                         | sort -u                                                         \
+                 )                                                                         \
+                <(git ls-files                                                             \
+                         | sed -r 's|${GIT_PREFIX:- }||'                                   \
+                         | sort -u                                                         \
+                 )\"
 
 [diff "astextplain"]
 	textconv = astextplain
@@ -72,3 +140,8 @@
 	insteadOf = stash:
 [push]
 	default = upstream
+
+[include]
+        path = .gitconfig.binary-files
+[gui]
+	editor = emacsclient
